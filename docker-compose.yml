@@ -1,0 +1,45 @@
+# For more information: https://laravel.com/docs/sail
+services:
+    laravel.test:
+        build:
+            context: ./vendor/laravel/sail/runtimes/8.1
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP:-33}'
+        image: sail-8.1/app
+        ports:
+            - '${APP_PORT:-80}:80'
+            - '9005:9005'
+        environment:
+            WWWUSER: '33'
+            LARAVEL_SAIL: 1
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        depends_on:
+            - mysql
+    mysql:
+        platform: linux/x86_64
+        image: 'mysql:8.0.21'
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        volumes:
+            - 'sailmysql:/var/lib/mysql'
+            - './docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
+        networks:
+            - sail
+networks:
+    sail:
+        driver: bridge
+volumes:
+    sailmysql:
+        driver: local
+    sailredis:
+        driver: local
