@@ -3,9 +3,10 @@
 @section('content')
     <h1>Cart</h1>
     @if (session('cart'))
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>Price</th>
@@ -14,6 +15,7 @@
             <tbody>
                 @foreach (session('cart') as $id => $details)
                     <tr>
+                        <td>{{ $id}}</td>
                         <td>{{ $details['name'] }}</td>
                         <td>{{ $details['quantity'] }}</td>
                         <td>${{ $details['price'] }}</td>

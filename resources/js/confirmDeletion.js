@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // 全ての削除ボタンにイベントリスナーを追加
-    const deleteButtons = document.querySelectorAll('.delete-button');
+    const deleteButtons = document.querySelectorAll('.btn-danger');
     deleteButtons.forEach(function (button) {
         button.addEventListener('click', function (event) {
             const productName = this.dataset.productName;
