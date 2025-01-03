@@ -13,7 +13,7 @@
             "pathMappings": {
                 //"/var/www": "${workspaceRoot}/laravel"
                 //"/var/www/html": "/home/takuma/shop-learning"
-                "//var/www/html": "\\\\wsl.localhost\\Ubuntu\\home\\takuma\\shop-learning"
+                "//var/www/html": "\\\\wsl.localhost\\Ubuntu\\home\\takuma\\shop"
             }
         },
         {
